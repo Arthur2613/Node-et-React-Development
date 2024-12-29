@@ -1,0 +1,52 @@
+<h1>Gestion des Étudiants</h1>
+
+<!-- Formulaire pour ajouter ou modifier un étudiant -->
+<form (submit)="saveEtudiant()" style="margin-bottom: 20px;">
+  <label>
+    Nom:
+    <input type="text" [(ngModel)]="formData.nom" name="nom" placeholder="Nom" required />
+  </label>
+  <label>
+    Prénom:
+    <input type="text" [(ngModel)]="formData.prenom" name="prenom" placeholder="Prénom" required />
+  </label>
+  <label>
+    Âge:
+    <input type="number" [(ngModel)]="formData.age" name="age" placeholder="Âge" required />
+  </label>
+  <label>
+    Classe:
+    <input type="text" [(ngModel)]="formData.classe" name="classe" placeholder="Classe" required />
+  </label>
+  <button type="submit">{{ formData.id === 0 ? 'Ajouter' : 'Modifier' }}</button>
+  <button type="button" (click)="resetForm()">Réinitialiser</button>
+</form>
+
+
+
+<!-- Tableau des étudiants -->
+<table border="1" style="width: 100%; text-align: left;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Âge</th>
+      <th>Classe</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let etudiant of etudiants">
+      <td>{{ etudiant.id }}</td>
+      <td>{{ etudiant.nom }}</td>
+      <td>{{ etudiant.prenom }}</td>
+      <td>{{ etudiant.age }}</td>
+      <td>{{ etudiant.classe }}</td>
+      <td>
+        <button (click)="editEtudiant(etudiant)">Modifier</button>
+        <button (click)="deleteEtudiant(etudiant.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
